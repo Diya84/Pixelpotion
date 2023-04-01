@@ -4,56 +4,117 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="https://cdn.tailwindcss.com" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>PixelPotion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="api.js"></script>
+    <title>Pixelpotion</title>
     <style>
-      header {
-        background-image: url("path/to/image.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
+      .min-height {
+        min-height: 100vh;
       }
-    </style>
+      </style>
+      <style>
+      img.bcg1 {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+       /* Safari 6.0 - 9.0 */
+      filter: blur(30px);
+      }
+      body {
+        background-image: url('bcg1.jpg');
+        background-repeat: no-repeat;
+        
+         background-size: cover;
+
+      }
+      </style>
   </head>
-  <body>
-    <header class="flex flex-col justify-center items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white py-12">
-      <h1 class="text-5xl font-bold mb-8">PixelPotion</h1>
-      <p class="text-xl text-center mb-12">
-        A magical image generator powered by the <a href="https://openai.com/api/" class="underline">OpenAI API</a>.
-        Simply enter a short description or a keyword and let your imagination run wild!
-      </p>
-    </header>
-    <main class="max-w-4xl mx-auto bg-gray-100 p-10 rounded-lg">
-      <form class="text-center">
-        <label for="text" class="text-lg font-semibold block mb-5">Enter a short description or a keyword:</label>
-        <div class="flex flex-row justify-center">
-          <input
-            type="text"
-            id="text"
-            name="text"
-            class="input-text border-2 border-gray-300 rounded-l-lg p-2 w-3/4"
-            placeholder="An Impressionist oil painting of sunflowers in a purple vase…"
-            required
-          />
-          <button
-            id="btn"
-            class="btn-generate bg-blue-500 text-white rounded-r-lg p-2 w-1/4"
-            onclick="generateImage()"
-            disabled
-          >
-            Generate
-          </button>
-        </div>
-      </form>
-      <div id="image" class="image-grid mt-10"></div>
-    </main>
-    <footer class="text-center mt-10 border-t-2 border-gray-200 pt-4">
-      <p class="text-gray-600">
-        &copy; 2023 Image Generator. All rights reserved.
-      </p>
-    </footer> 
-    <script defer src="api.js"></script>
-    <script defer src="main.js"></script>
+  <body class="max-w-4xl mx-auto">
+    <div
+      class="min-height flex flex-col justify-center px-4 py-12 sm:px-6 lg:px-8 -mt-20"
+    >
+      <div class="text-center">
+        <h1 class="text-2xl font-bold mb-10">Pixelpotion</h1>
+        <p class="text-md lg:text-xl mb-10">
+          A magical image generator powered by the <a href="https://openai.com/api/" class="underline">OpenAI API</a>.
+          Simply enter a short description or a keyword and let your imagination run wild!
+        </p>
+      </div>
+      <div class="flex flex-row justify-center">
+        <input
+          type="text"
+          id="text"
+          class="shadow-lg outline-none w-full rounded-l-lg px-4 py-4 text-black-600 border-r-2 border-black-200"
+          placeholder="An Impressionist oil painting of sunflowers in a purple vase…"
+        />
+        <button
+          id="btn"
+          class="font-arial py-4 px-8 rounded-r-lg shadow-lg"
+          onclick="generateImage()"
+        >
+          Generate
+        </button>
+      </div>
+      <div id="image" class="grid grid-cols-2 lg:grid-cols-2 gap-3 mt-4"></div>
+      <footer
+        class="text-center mt-10 border-t-2 border-gray-200 pt-4"
+        id="checkAuthor"
+      >
+        
+      </footer>
+    </div>
   </body>
+  <script>
+    
+    if (api === ""){
+      alert("Use your openAI API key");
+    }
+    const url = "https://api.openai.com/v1/images/generations";
+    const text = document.getElementById("text");
+    const image = document.getElementById("image");
+    const btn = document.getElementById("btn");
+
+    function generateImage() {
+      if (text.value === "") {
+        alert("Please enter a value");
+      } else {
+        const data = {
+          prompt: text.value,
+          n: 2,
+          size: "1024x1024",
+        };
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${api}`,
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            const arraySize = data.data.length;
+            for (let i = 0; i < arraySize; i++) {
+              image.innerHTML += `<img src="${data.data[i].url}" alt="image" class="w-100 p-2">`;
+            }
+          });
+      }
+    }
+
+    
+
+    text.addEventListener("input", function () {
+      if (text.value === "") {
+        btn.classList.remove("bg-slate-900", "text-slate-50");
+        text.classList.add("border-r-2", "border-gray-200");
+      } else {
+        text.classList.remove("border-r-2", "border-gray-200");
+        btn.classList.add("bg-slate-900", "text-slate-50");
+      }
+    });
+  </script>
 </html>
