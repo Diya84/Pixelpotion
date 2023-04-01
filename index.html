@@ -11,28 +11,29 @@
   </head>
   <body>
     <header>
-      <h1 class="text-4xl font-bold mb-10">Image Generator</h1>
-      <p class="text-md lg:text-xl mb-10">
-        This is a simple image generator using
-        <a href="https://openai.com/api/" class="font-semibold">OpenAI API.</a>
-        You can generate images by entering a short description or a keyword.
-      </p>
+      <div class="flex flex-col justify-center items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white py-12">
+  <h1 class="text-5xl font-bold mb-8">PixelPotion</h1>
+  <p class="text-xl text-center mb-12">
+    A magical image generator powered by the <a href="https://openai.com/api/" class="underline">OpenAI API</a>.
+    Simply enter a short description or a keyword and let your imagination run wild!
+  </p>
+</div>
     </header>
-    <main class="max-w-4xl mx-auto">
-      <form>
-        <label for="text">Enter a short description or a keyword:</label>
+   <main class="max-w-4xl mx-auto bg-gray-100 p-10 rounded-lg">
+      <form class="text-center">
+        <label for="text" class="text-lg font-semibold block mb-5">Enter a short description or a keyword:</label>
         <div class="flex flex-row justify-center">
           <input
             type="text"
             id="text"
             name="text"
-            class="input-text"
+            class="input-text border-2 border-gray-300 rounded-l-lg p-2 w-3/4"
             placeholder="An Impressionist oil painting of sunflowers in a purple vase…"
             required
           />
           <button
             id="btn"
-            class="btn-generate"
+            class="btn-generate bg-blue-500 text-white rounded-r-lg p-2 w-1/4"
             onclick="generateImage()"
             disabled
           >
@@ -40,13 +41,13 @@
           </button>
         </div>
       </form>
-      <div id="image" class="image-grid"></div>
+      <div id="image" class="image-grid mt-10"></div>
     </main>
-    <footer>
-      <p class="mt-10 border-t-2 border-gray-200 pt-4">
+    <footer class="text-center mt-10 border-t-2 border-gray-200 pt-4">
+      <p class="text-gray-600">
         &copy; 2023 Image Generator. All rights reserved.
       </p>
-    </footer>
+    </footer> 
     <script defer src="api.js"></script>
     <script defer src="main.js"></script>
   </body>
