@@ -8,18 +8,23 @@
     <link rel="stylesheet" href="https://cdn.tailwindcss.com" />
     <link rel="stylesheet" href="styles.css" />
     <title>PixelPotion</title>
+    <style>
+      header {
+        background-image: url("path/to/image.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
-  <body class="bg-gray-100">
-    <header class="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-12">
-      <div class="max-w-4xl mx-auto flex flex-col justify-center items-center">
-        <h1 class="text-6xl font-extrabold mb-8">PixelPotion</h1>
-        <p class="text-xl text-center mb-12">
-          A magical image generator powered by the <a href="https://openai.com/api/" class="underline">OpenAI API</a>.
-          Simply enter a short description or a keyword and let your imagination run wild!
-        </p>
-      </div>
+  <body>
+    <header class="flex flex-col justify-center items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white py-12">
+      <h1 class="text-5xl font-bold mb-8">PixelPotion</h1>
+      <p class="text-xl text-center mb-12">
+        A magical image generator powered by the <a href="https://openai.com/api/" class="underline">OpenAI API</a>.
+        Simply enter a short description or a keyword and let your imagination run wild!
+      </p>
     </header>
-    <main class="max-w-4xl mx-auto bg-white p-10 rounded-lg">
+    <main class="max-w-4xl mx-auto bg-gray-100 p-10 rounded-lg">
       <form class="text-center">
         <label for="text" class="text-lg font-semibold block mb-5">Enter a short description or a keyword:</label>
         <div class="flex flex-row justify-center">
@@ -33,7 +38,7 @@
           />
           <button
             id="btn"
-            class="btn-generate bg-pink-500 text-white rounded-r-lg p-2 w-1/4"
+            class="btn-generate bg-blue-500 text-white rounded-r-lg p-2 w-1/4"
             onclick="generateImage()"
             disabled
           >
@@ -47,9 +52,8 @@
       <p class="text-gray-600">
         &copy; 2023 Image Generator. All rights reserved.
       </p>
-    </footer>
+    </footer> 
     <script defer src="api.js"></script>
     <script defer src="main.js"></script>
   </body>
 </html>
-
