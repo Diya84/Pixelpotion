@@ -63,19 +63,30 @@
         class="text-center mt-10 border-t-2 border-gray-200 pt-4"
         id="checkAuthor"
       >
-        
+        <div id="chatbot-container">
+          <div id="chatbot"></div>
+          <input type="text" id="chatbot-input" />
+        </div>
       </footer>
     </div>
   </body>
   <script>
-    
-    if (api === ""){
+    if (api === "") {
       alert("Use your openAI API key");
     }
     const url = "https://api.openai.com/v1/images/generations";
     const text = document.getElementById("text");
     const image = document.getElementById("image");
     const btn = document.getElementById("btn");
+    const chatbot = document.getElementById("chatbot");
+    const chatbotInput = document.getElementById("chatbot-input");
+
+    function generateImage() {
+      if (text.value === "") {
+        alert("Please enter a value");
+      } else {
+       
+
 
     function generateImage() {
       if (text.value === "") {
