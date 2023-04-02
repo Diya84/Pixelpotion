@@ -1,4 +1,4 @@
-#Pixelpotion
+# Pixelpotion
 A magical image generator powered by the OpenAI API. Simply enter a short description or a keyword and let your imagination run wild!
 
 ## How to use
