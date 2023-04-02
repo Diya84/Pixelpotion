@@ -12,3 +12,5 @@ A magical image generator powered by the OpenAI API. Simply enter a short descri
 [OpenAI API](https://openai.com/api/)
 
 `Note:` Sign up for an API key and add it to the `api.js` file
+![Screenshot (590)](https://user-images.githubusercontent.com/86870251/229344644-59507d53-3978-41a8-813e-f8e25e6ba8a5.png)
+
